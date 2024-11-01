@@ -58,6 +58,7 @@ function App() {
     <div className="App">
       <h1>readme.md generator</h1>
       <span id='tip-span'>tip: Hit tab to quickly jump between the inputs! Also, typing \n will create a new line in the markdown document!</span>
+      <span>Don't forget to bookmark this site to use for your other projects!</span>
       <form id='readme-form' onSubmit={handleForm}>
         <input type='text' onChange={buttonStatus} id='title-input' placeholder='project title(required)' required/>
         <input type='text' id='description-input' placeholder='description'/>
@@ -70,6 +71,7 @@ function App() {
         <input type='text' id='tests-input' placeholder='tests'/>
         <button id='download-button' onClick={() => {downloadMarkdownFile(markdownContent)}}>download your readme.md</button>
       </form>
+          <a href='https://www.github.com/BroderickHywell' target='_blank' rel='noreferrer'><button className='contact-button'>Check out my github!</button></a>
     </div>
   )
 }
