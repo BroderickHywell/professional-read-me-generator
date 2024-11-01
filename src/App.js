@@ -12,50 +12,42 @@ function generateMarkdownContent() {
 
   // checks for description
   if(document.getElementById('description-input').value !== ''){
-    markdown += `\n## Description
-    ${document.getElementById('description-input').value}`
+    markdown += `\n## Description \n${document.getElementById('description-input').value}`
   }
 
   // checks for installation
   if(document.getElementById('installation-input').value !== ''){
-    markdown += `\n## Installation
-    ${document.getElementById('installation-input').value}`
+    markdown += `\n## Installation \n${document.getElementById('installation-input').value}`
   }
 
   // checks for usage
   if(document.getElementById('usage-input').value !== ''){
-    markdown += `\n## Usage
-    ${document.getElementById('usage-input').value}`
+    markdown += `\n## Usage \n${document.getElementById('usage-input').value}`
   }
 
   // checks for credits
   if(document.getElementById('credits-input').value !== ''){
-    markdown += `\n## Credits
-    ${document.getElementById('credits-input').value}`
+    markdown += `\n## Credits \n${document.getElementById('credits-input').value}`
   }
 
   // checks for license
   if(document.getElementById('license-input').value !== ''){
-    markdown += `\n## License
-    ${document.getElementById('license-input').value}`
+    markdown += `\n## License \n${document.getElementById('license-input').value}`
   }
 
   // checks for features
   if(document.getElementById('features-input').value !== ''){
-    markdown += `\n## Features
-    ${document.getElementById('features-input').value}`
+    markdown += `\n## Features \n${document.getElementById('features-input').value}`
   }
 
   // checks for contribution
   if(document.getElementById('contribution-input').value !== ''){
-    markdown += `\n## Contribution
-    ${document.getElementById('contribution-input').value}`
+    markdown += `\n## Contribution \n${document.getElementById('contribution-input').value}`
   }
 
   // checks for tests
   if(document.getElementById('tests-input').value !== ''){
-    markdown += `\n## Tests
-    ${document.getElementById('tests-input').value}`
+    markdown += `\n## Tests \n${document.getElementById('tests-input').value}`
   }
 
   console.log(markdown)
