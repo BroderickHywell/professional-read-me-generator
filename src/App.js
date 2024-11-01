@@ -85,7 +85,7 @@ function App() {
   return (
     <div className="App">
       <h1>readme.md generator</h1>
-      <span id='tip-span'>pro tip: Hit tab to quickly jump between the inputs!</span>
+      <span id='tip-span'>tip: Hit tab to quickly jump between the inputs! Also, typing \n will create a new line</span>
       <form id='readme-form' onSubmit={handleForm}>
         <input type='text' onChange={buttonStatus} id='title-input' placeholder='project title(required)' required/>
         <input type='text' id='description-input' placeholder='description'/>
