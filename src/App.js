@@ -1,5 +1,4 @@
 import './App.css'
-
 // prevents the page from loading when you submit the form
 let markdownContent // defines markdown content to be used later by multiple functions
 function handleForm(event){ event.preventDefault() } 
