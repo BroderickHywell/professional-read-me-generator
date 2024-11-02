@@ -56,7 +56,7 @@ function App() {
   return (
     <div className="App">
       <h1>readme.md generator</h1>
-      <span id='tip-span'>tip: Hit tab to quickly jump between the inputs! Also, typing \n will create a new line in the markdown document!</span>
+      <span id='tip-span'>tip: Hit tab to quickly jump between the inputs! Also, adding two or more spaces will create a new line in the markdown document!</span>
       <span>Don't forget to bookmark this site to use for your other projects!</span>
       <form id='readme-form' onSubmit={handleForm}>
         <input type='text' onChange={buttonStatus} id='title-input' placeholder='project title(required)' required/>
