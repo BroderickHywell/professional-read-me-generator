@@ -86,7 +86,7 @@ function App() {
     <div className="App">
       <h1>readme.md generator</h1>
       <span id='tip-span'>tip: Hit tab to quickly jump between the inputs! Also, adding two or more spaces will create a new line in the markdown document!</span>
-      <span>Leave any values you don't want empty</span>
+      <span>Leave any values you don't want in the readme empty and they won't show up to your party.</span>
       <span>Don't forget to bookmark this site to use for your other projects!</span>
       <form id='readme-form' onSubmit={handleForm}>
         <div id='inputs-div'>
