@@ -3,7 +3,8 @@ import './App.css'
 let markdownContent // defines markdown content to be used later by multiple functions
 function handleForm(event){ event.preventDefault() } 
 
-// function for getting data for 
+// function for getting data for markdown file
+let inputCount = 1
 function fetchUserInputData() {
   // creates markdown file based on what user inputed on page
   let markdown = `# ${document.getElementById('title-input').value}`
