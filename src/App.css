@@ -72,3 +72,47 @@ a{
   display: flex;
   margin-left: 10px;
 }
+
+#custom-input-button {
+  display: flex;
+}
+
+.custom-contact-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#inputs-div {
+  display: flex;
+  flex-direction: column;
+}
+
+#new-input-form input {
+  background-color: #abffc7;
+  width: 180px;
+  color: black;
+}
+
+/* SCROLLBAR STYLES */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #3b3b3b;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #4dfa87;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #abffc7;
+}
