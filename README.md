@@ -12,8 +12,12 @@ by just entering your data for your application into the fields, and my applicat
 ## Link
 [professional readme.md generator](https://brodericks-pro-readme-generator.netlify.app/)
 
+## Screenshot
+![app-screenshot](https://github.com/user-attachments/assets/e0cc6ee0-bfc8-4e5d-9535-a4145c819007)
+
 ## Usage
-Simply enter your project details into the corresponding fields and submit the form by clicking the button or hitting enter. It will create a README.md file for you to download to whatever destination you choose.
+Simply enter your project details into the corresponding fields and submit the form by clicking the button or hitting enter. It will create a README.md file for you to download to whatever destination you choose. You can also add as many new inputs as you like for your readme.md file
+with the input at the bottom of the page.
 
 ## Credits
 [netlify](https://www.netlify.com/) - hosting live application
