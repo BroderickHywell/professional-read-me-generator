@@ -63,8 +63,9 @@ function buttonStatus(){
 }
 
 function addField(event){
-  event.preventDefault()
+  event.preventDefault() // prevents page from refreshing
   if(document.getElementById('new-input-input').value !== ''){
+    // sets up the new custom input field created by the user and puts it on page
     let inputForm = document.getElementById('inputs-div')
     let newField = document.createElement('input')
     let newFieldId = inputCount
