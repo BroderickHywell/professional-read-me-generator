@@ -22,7 +22,7 @@ textarea {
 }
 textarea:focus {
   outline: none !important;
-  border: 1px solid #4dfa87
+  border: 1px solid #abffc7
 }
 
 .editor-div {
@@ -122,14 +122,40 @@ a{
   margin-bottom: 20px;
 }
 
-#inputs-div {
+.start-span {
+  width: 500px;
+}
+
+.section-span {
+  font-size: 20px;
+  color: #abffc7;
+  padding: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: #3b3b3b;
+  margin: 0;
+  height: 20px;
+}
+.section-span:hover {
+  background-color: gray;
+  cursor: pointer;
+}
+
+.section-button {
+  display: inline;
+  width: 70px;
+  height: 29px;
+  border-radius: 0;
+}
+
+#sections-div {
+  background-color: #abffc7;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   background-color: transparent;
   height: 377px;
 }
-
 #new-input-form input {
   background-color: #abffc7;
   width: 180px;
@@ -160,4 +186,15 @@ a{
 #editor {
   width: 500px;
   height: 500px;
+}
+
+/* highlight colors */
+::-moz-selection { /* Code for Firefox */
+  color: #3b3b3b;
+  background: #abffc7;
+}
+
+::selection {
+  color: #3b3b3b;
+  background: #abffc7;
 }
