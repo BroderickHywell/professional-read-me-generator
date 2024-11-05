@@ -25,9 +25,7 @@ function fetchUserInputData() {
   if(document.getElementById('5').value !== ''){markdown += `\n## Features \n${document.getElementById('5').value}`}
   if(document.getElementById('6').value !== ''){markdown += `\n## Contribution \n${document.getElementById('6').value}`}
   if(document.getElementById('7').value !== ''){markdown += `\n## Tests \n${document.getElementById('7').value}`}
-  if(document.getElementById('8')){
-    markdown = addNewInputsToMarkdown(markdown)
-  }
+  if(document.getElementById('8')){markdown = addNewInputsToMarkdown(markdown)}
   return markdown
 }
 
@@ -73,7 +71,6 @@ function addField(event){
     newField.setAttribute('type', 'text')
     newField.setAttribute('placeholder', document.getElementById('new-input-input').value)
     newField.setAttribute('id', newFieldId)
-
     inputForm.appendChild(newField)
   }else{
     document.getElementById('new-input-input').value = 'can\'t be empty'
