@@ -2,7 +2,7 @@ import './App.css'
 function handleForm(event){ event.preventDefault() } // prevents the page from loading when you submit the form
 let markdownContent     // defines markdown content to be used later by multiple functions
 let sections = 6        // variable for creating unique id's for each section
-let sectionContentArr = [] // array for holding the markdown content for each section
+let sectionStorage = [[0, `# Title`], [1,`## Description`], [2,`## Link`], [3,`## Usage`], [4,`## License`], [5,`## Contribution`]] // array for holding the markdown content for each section
 let selectedSection = 0 // variable for keeping track of the section that is selected
 
 // grabs all the data from the page to be put into the readme.md file for the user
@@ -40,6 +40,11 @@ function downloadMarkdownFile(markdownContent) {
 function addSection(event){
   event.preventDefault() // prevents page from refreshing
 
+  // add new item to section storage array
+  sectionStorage.push([sections, `${document.getElementById('new-section-input').value}`])
+  console.log([sections, `## ${document.getElementById('new-section-input').value}`])
+  console.log(sectionStorage  )
+
   // creates containing div of the span and button elements for the new section
   let newSectionDiv = document.createElement('div')
   newSectionDiv.classList.add('single-section-div')
@@ -49,7 +54,7 @@ function addSection(event){
   let newSectionSpan = document.createElement('span')
   newSectionSpan.innerHTML = document.getElementById('new-section-input').value
   newSectionSpan.classList.add('section-span')
-  newSectionSpan.addEventListener('click', ()=>{displayInEditor(sections.toString)})
+  newSectionSpan.addEventListener('click', ()=>{displayInEditor(sections)})
 
   // creates delete button for new section
   let newSectionButton = document.createElement('button')
@@ -73,8 +78,14 @@ function removeSection(sectionId){
 function displayInEditor(sectionId){
   console.log('displaying')
   selectedSection = sectionId
-  let editor = document.getElementById('section-editor')
-  editor.value = `## ${document.getElementById(sectionId).querySelector('span').textContent}`
+  console.log(`selected section ${selectedSection}`)
+  console.log(`sectionID ${sectionId}`)
+  for(let i=0; i<sectionStorage.length; i++){
+    console.log(`${i} is not equal to ${sectionStorage[i][0]}`)
+    if(Number(sectionStorage[i][0]) === Number(sectionId)){
+      document.getElementById('section-editor').value = sectionStorage[i][1]
+    }
+  }
 }
 
 // function updatePreview(selectedId){
@@ -87,6 +98,16 @@ function displayInEditor(sectionId){
 //   let markdownPreview = document.getElementById('markdown-preview')
 //   markdownPreview.appendChild(sectionHeaderPreview)
 // }
+
+function updateStorage(){
+  console.log('updating')
+  for(let i=0; i<sectionStorage.length; i++){
+    if(sectionStorage[i][0] === selectedSection){
+      sectionStorage[i][1] = document.getElementById('section-editor').value
+    }
+  }
+  console.log(sectionStorage[0][1])
+}
 
 // main function
 function App() {
@@ -136,7 +157,7 @@ function App() {
         {/* text editor */}
         <div className='editor-div'>
           <h2>Section Editor</h2>
-          <textarea id='section-editor' rows="2" cols="25" placeholder='Select or create section.'></textarea>
+          <textarea id='section-editor' onChange={() => updateStorage()} rows="2" cols="25" placeholder='Select or create section.'></textarea>
         </div>
 
         {/* markdown preview */}
