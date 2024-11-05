@@ -83,9 +83,8 @@ function App() {
   return (
     <div className="App">
       <h1>readme.md generator</h1>
-      <span id='tip-span'>tip: Hit tab to quickly jump between the inputs!</span>
-      <span>Leave any values you don't want in the readme empty and they won't show up to your party.</span>
       <span>Don't forget to bookmark this site to use for your other projects!</span>
+      <button id='download-button' onClick={() => {downloadMarkdownFile(markdownContent)}}>download your readme.md</button>
       <form id='readme-form' onSubmit={handleForm}>
         <div id='inputs-div'>
           <input type='text' onChange={buttonStatus} id='title-input' placeholder='project title(required)' required/>
@@ -98,7 +97,10 @@ function App() {
           <input type='text' id='6' placeholder='contribution'/>
           <input type='text' id='7' placeholder='tests'/>
         </div>
-        <button id='download-button' onClick={() => {downloadMarkdownFile(markdownContent)}}>download your readme.md</button>
+        <div className='editor-div'>
+          <h2>Section Editor</h2>
+         <textarea rows="2" cols="25"></textarea>
+        </div>
       </form>
       <div className='custom-contact-buttons'>
         <form id='new-input-form' onSubmit={addField}>

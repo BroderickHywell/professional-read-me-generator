@@ -6,6 +6,37 @@
   flex-wrap: wrap;
 }
 
+#download-button {
+  position: absolute ;
+  top: 0;
+  left: 0;
+}
+
+textarea {
+  background-color: #3b3b3b;
+  color: #abffc7;
+  width: 300px;
+  height: 300px;
+  margin-left: 20px;
+  resize: none;
+}
+textarea:focus {
+  outline: none !important;
+  border: 1px solid #4dfa87
+}
+
+.editor-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
 h1 {
   margin-left: 50px;
   margin-right: 50px;
@@ -48,6 +79,12 @@ span{
   margin-right: 50px;
 }
 
+#readme-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 button {
   margin-top: 20px;
   background-color: #4dfa87;
@@ -88,6 +125,9 @@ a{
 #inputs-div {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  background-color: transparent;
+  height: 377px;
 }
 
 #new-input-form input {
@@ -115,4 +155,9 @@ a{
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #abffc7;
+}
+
+#editor {
+  width: 500px;
+  height: 500px;
 }
