@@ -43,26 +43,57 @@ function downloadMarkdownFile(markdownContent) {
   }
 }
 
+function addSection(event){
+  event.preventDefault() // prevents page from refreshing
+  let newSectionDiv = document.createElement('div')
+  newSectionDiv.classList.add('single-section-div')
+
+  let newSectionSpan = document.createElement('span')
+  newSectionSpan.innerHTML = document.getElementById('new-section-input').value
+  newSectionSpan.classList.add('section-span')
+
+  let newSectionButton = document.createElement('button')
+  newSectionButton.innerHTML = 'delete'
+  newSectionButton.classList.add('section-button')
+
+  newSectionDiv.appendChild(newSectionSpan)
+  newSectionDiv.appendChild(newSectionButton)
+  document.getElementById('sections-div').appendChild(newSectionDiv)
+}
+
 // main function
 function App() {
   return (
     <div className="App">
+      <button id='download-button' onClick={() => {downloadMarkdownFile(markdownContent)}}>download your readme.md</button>
       <h1>readme.md generator</h1>
       <span className='start-span'>To edit a section, click on the text to the left of the delete button and it will show up in the editor on the right. Don't forget to bookmark this site to use for your other projects!</span>
-      <button id='download-button' onClick={() => {downloadMarkdownFile(markdownContent)}}>download your readme.md</button>
-      <form id='readme-form' onSubmit={handleForm}>
-        <div id='sections-div'>
-          <h2>readme.md sections</h2>
-          <div className='single-section-div'>
-            <span className='section-span'>Title Of Project</span>
-            <button className='section-button'>delete</button>
+      <div className='main-content-div'>
+      <h2 className='readme-sections-h2'>readme.md sections</h2>
+        <form id='readme-form' onSubmit={handleForm}>
+          {/* sections */}
+          <div id='sections-div'>
+            <div className='single-section-div'>
+              <span className='section-span'>Title Of Project</span>
+              <button className='section-button'>delete</button>
+            </div>
           </div>
-        </div>
-        <div className='editor-div'>
-          <h2>Section Editor</h2>
-         <textarea rows="2" cols="25"></textarea>
-        </div>
-      </form>
+
+          {/* text editor */}
+          <div className='editor-div'>
+            <h2>Section Editor</h2>
+          <textarea rows="2" cols="25" defaultValue={'Select or create section to get started.'}></textarea>
+          </div>
+        </form>
+
+        {/* new section form */}
+        <form id='new-section-form' onSubmit={addSection}>
+          <div className='new-section-div'>
+            <input placeholder='create new section' id='new-section-input' maxLength={14}/>
+            <button id='new-section-button'>+</button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
