@@ -1,6 +1,7 @@
 import './App.css'
 function handleForm(event){ event.preventDefault() } // prevents the page from loading when you submit the form
 let markdownContent // defines markdown content to be used later by multiple functions
+let sections = 1
 
 // grabs all the data from the page to be put into the readme.md file for the user
 function fetchUserInputData() {
@@ -45,8 +46,11 @@ function downloadMarkdownFile(markdownContent) {
 
 function addSection(event){
   event.preventDefault() // prevents page from refreshing
+
+  // creates containing div of the span and button elements for the new section
   let newSectionDiv = document.createElement('div')
   newSectionDiv.classList.add('single-section-div')
+  newSectionDiv.id = sections.toString
 
   let newSectionSpan = document.createElement('span')
   newSectionSpan.innerHTML = document.getElementById('new-section-input').value
@@ -55,10 +59,16 @@ function addSection(event){
   let newSectionButton = document.createElement('button')
   newSectionButton.innerHTML = 'delete'
   newSectionButton.classList.add('section-button')
+  newSectionButton.addEventListener('click', ()=> { removeSection(sections.toString)})
 
   newSectionDiv.appendChild(newSectionSpan)
   newSectionDiv.appendChild(newSectionButton)
   document.getElementById('sections-div').appendChild(newSectionDiv)
+  sections++
+}
+
+function removeSection(sectionId){
+    document.getElementById(sectionId).remove() 
 }
 
 // main function
@@ -73,9 +83,9 @@ function App() {
         <form id='readme-form' onSubmit={handleForm}>
           {/* sections */}
           <div id='sections-div'>
-            <div className='single-section-div'>
+            <div className='single-section-div' id='0'>
               <span className='section-span'>Title Of Project</span>
-              <button className='section-button'>delete</button>
+              <button className='section-button' onClick={() => removeSection(0)}>delete</button>
             </div>
           </div>
 
