@@ -17,6 +17,10 @@
   display: block;
 }
 
+.sections-and-editor {
+  display: flex;
+}
+
 textarea {
   background-color: #3b3b3b;
   color: #abffc7;
