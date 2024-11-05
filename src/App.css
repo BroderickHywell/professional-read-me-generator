@@ -19,6 +19,20 @@
 
 .sections-and-editor {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#markdown-preview {
+  background-color: #3b3b3b;
+  margin-left: 20px;
+  width: 400px;
+  height: 300px;
+}
+
+.markdown-preview-h2 {
+  margin-left: 80px;
 }
 
 textarea {
@@ -74,6 +88,15 @@ input:focus {
 }
 
 ::-ms-input-placeholder { /* Edge 12 -18 */
+  color: rgb(54, 54, 54);
+}
+
+textarea::placeholder {
+  color: #4dfa87;
+  opacity: 1; /* Firefox */
+}
+
+textarea::-ms-input-placeholder { /* Edge 12 -18 */
   color: rgb(54, 54, 54);
 }
 
@@ -144,6 +167,10 @@ a{
   flex-direction: column;
 }
 
+#section-editor {
+  height: 300px;
+}
+
 #new-section-input {
   width: 200px;
 }
@@ -164,6 +191,7 @@ a{
 }
 
 .section-span {
+  display: inline-block;
   font-size: 20px;
   color: #4dfa87;
   padding: 10px;
@@ -171,7 +199,7 @@ a{
   padding-bottom: 2px;
   background-color: grey;
   margin: 0;
-  height: 20px;
+  width: 140px;
 }
 .section-span:hover {
   background-color: gray;
@@ -194,7 +222,7 @@ a{
   padding: 5px;
   width: 250px;
   align-items: center;
-  height: 377px;
+  height: 300px;
 }
 #new-input-form input {
   background-color: #abffc7;
