@@ -1,7 +1,9 @@
 import './App.css'
 function handleForm(event){ event.preventDefault() } // prevents the page from loading when you submit the form
-let markdownContent // defines markdown content to be used later by multiple functions
-let sections = 1
+let markdownContent     // defines markdown content to be used later by multiple functions
+let sections = 6        // variable for creating unique id's for each section
+let sectionContentArr = [] // array for holding the markdown content for each section
+let selectedSection = 0 // variable for keeping track of the section that is selected
 
 // grabs all the data from the page to be put into the readme.md file for the user
 function fetchUserInputData() {
@@ -64,14 +66,27 @@ function addSection(event){
 
 // function that simply removes sections
 function removeSection(sectionId){
-    document.getElementById(sectionId).remove() 
+    document.getElementById(sectionId).remove()
+    document.getElementById('section-editor').value = ''
 }
 
 function displayInEditor(sectionId){
   console.log('displaying')
+  selectedSection = sectionId
   let editor = document.getElementById('section-editor')
   editor.value = `## ${document.getElementById(sectionId).querySelector('span').textContent}`
 }
+
+// function updatePreview(selectedId){
+//   console.log('updating preview')
+//   let sectionHeader = document.getElementById(selectedId).querySelector('span').textContent
+//   let sectionHeaderPreview = document.createElement('h3')
+//   sectionHeaderPreview.textContent = sectionHeader
+
+//   let sectionContent = document.getElementById('')
+//   let markdownPreview = document.getElementById('markdown-preview')
+//   markdownPreview.appendChild(sectionHeaderPreview)
+// }
 
 // main function
 function App() {
@@ -81,21 +96,55 @@ function App() {
       <h1>readme.md generator</h1>
       <span className='start-span'>To edit a section, click on the text to the left of the delete button and it will show up in the editor on the right. Don't forget to bookmark this site to use for your other projects!</span>
       <div className='main-content-div'>
-      <h2 className='readme-sections-h2'>readme.md sections</h2>
       <div className='sections-and-editor'>
         {/* sections */}
-        <div id='sections-div'>
-          <div className='single-section-div' id='0'>
-            <span className='section-span' onClick={() => displayInEditor(0)}>Title Of Project</span>
-            <button className='section-button' onClick={() => removeSection(0)}>delete</button>
+        <div>
+          <h2 className='readme-sections-h2'>readme.md sections</h2>
+          <div id='sections-div'>
+            <div className='single-section-div' id='0'>
+              <span className='section-span' onClick={() => displayInEditor(0)}>Title</span>
+              <button className='section-button' onClick={() => removeSection(0)}>delete</button>
+            </div>
+
+            <div className='single-section-div' id='1'>
+              <span className='section-span' onClick={() => displayInEditor(1)}>Description</span>
+              <button className='section-button' onClick={() => removeSection(1)}>delete</button>
+            </div>
+
+            <div className='single-section-div' id='2'>
+              <span className='section-span' onClick={() => displayInEditor(2)}>Link</span>
+              <button className='section-button' onClick={() => removeSection(2)}>delete</button>
+            </div>
+
+            <div className='single-section-div' id='3'>
+              <span className='section-span' onClick={() => displayInEditor(3)}>Usage</span>
+              <button className='section-button' onClick={() => removeSection(3)}>delete</button>
+            </div>
+
+            <div className='single-section-div' id='4'>
+              <span className='section-span' onClick={() => displayInEditor(4)}>License</span>
+              <button className='section-button' onClick={() => removeSection(4)}>delete</button>
+            </div>
+
+            <div className='single-section-div' id='5'>
+              <span className='section-span' onClick={() => displayInEditor(5)}>Contribute</span>
+              <button className='section-button' onClick={() => removeSection(5)}>delete</button>
+            </div>
           </div>
         </div>
 
         {/* text editor */}
         <div className='editor-div'>
           <h2>Section Editor</h2>
-          <textarea id='section-editor' rows="2" cols="25" defaultValue={'Select or create section to get started.'}></textarea>
+          <textarea id='section-editor' rows="2" cols="25" placeholder='Select or create section.'></textarea>
         </div>
+
+        {/* markdown preview */}
+        {/* <div>
+          <h2 className='markdown-preview-h2'>Markdown Preview</h2>
+          <div id='markdown-preview'>
+          </div>
+        </div> */}
       </div>
 
         {/* new section form */}
