@@ -7,16 +7,6 @@ let sections = 1
 function fetchUserInputData() {
   // creates markdown file based on what user inputed on page
   let markdown = `# ${document.getElementById('title-input').value}`
-  
-  // checks which parameters the user filled and adds them to the markdown data
-  if(document.getElementById('0').value !== ''){markdown += `\n## Description \n${document.getElementById('0').value}`}
-  if(document.getElementById('1').value !== ''){markdown += `\n## Installation \n${document.getElementById('1').value}`}
-  if(document.getElementById('2').value !== ''){markdown += `\n## Usage \n${document.getElementById('2').value}`}
-  if(document.getElementById('3').value !== ''){markdown += `\n## Credits \n${document.getElementById('3').value}`}
-  if(document.getElementById('4').value !== ''){markdown += `\n## License \n${document.getElementById('4').value}`}
-  if(document.getElementById('5').value !== ''){markdown += `\n## Features \n${document.getElementById('5').value}`}
-  if(document.getElementById('6').value !== ''){markdown += `\n## Contribution \n${document.getElementById('6').value}`}
-  if(document.getElementById('7').value !== ''){markdown += `\n## Tests \n${document.getElementById('7').value}`}
   return markdown
 }
 
@@ -44,31 +34,43 @@ function downloadMarkdownFile(markdownContent) {
   }
 }
 
+// adds new section to the page based on user input
 function addSection(event){
   event.preventDefault() // prevents page from refreshing
 
   // creates containing div of the span and button elements for the new section
   let newSectionDiv = document.createElement('div')
   newSectionDiv.classList.add('single-section-div')
-  newSectionDiv.id = sections.toString
+  newSectionDiv.id = sections.toString // id for deleting section
 
+  // creates span with the new section title
   let newSectionSpan = document.createElement('span')
   newSectionSpan.innerHTML = document.getElementById('new-section-input').value
   newSectionSpan.classList.add('section-span')
+  newSectionSpan.addEventListener('click', ()=>{displayInEditor(sections.toString)})
 
+  // creates delete button for new section
   let newSectionButton = document.createElement('button')
   newSectionButton.innerHTML = 'delete'
   newSectionButton.classList.add('section-button')
   newSectionButton.addEventListener('click', ()=> { removeSection(sections.toString)})
 
+  // adds elements to div, then adds the div to the page
   newSectionDiv.appendChild(newSectionSpan)
   newSectionDiv.appendChild(newSectionButton)
   document.getElementById('sections-div').appendChild(newSectionDiv)
-  sections++
+  sections++ // increases so each new section has a unique id
 }
 
+// function that simply removes sections
 function removeSection(sectionId){
     document.getElementById(sectionId).remove() 
+}
+
+function displayInEditor(sectionId){
+  console.log('displaying')
+  let editor = document.getElementById('section-editor')
+  editor.value = `## ${document.getElementById(sectionId).querySelector('span').textContent}`
 }
 
 // main function
@@ -80,21 +82,21 @@ function App() {
       <span className='start-span'>To edit a section, click on the text to the left of the delete button and it will show up in the editor on the right. Don't forget to bookmark this site to use for your other projects!</span>
       <div className='main-content-div'>
       <h2 className='readme-sections-h2'>readme.md sections</h2>
-        <form id='readme-form' onSubmit={handleForm}>
-          {/* sections */}
-          <div id='sections-div'>
-            <div className='single-section-div' id='0'>
-              <span className='section-span'>Title Of Project</span>
-              <button className='section-button' onClick={() => removeSection(0)}>delete</button>
-            </div>
+      <div className='sections-and-editor'>
+        {/* sections */}
+        <div id='sections-div'>
+          <div className='single-section-div' id='0'>
+            <span className='section-span' onClick={() => displayInEditor(0)}>Title Of Project</span>
+            <button className='section-button' onClick={() => removeSection(0)}>delete</button>
           </div>
+        </div>
 
-          {/* text editor */}
-          <div className='editor-div'>
-            <h2>Section Editor</h2>
-          <textarea rows="2" cols="25" defaultValue={'Select or create section to get started.'}></textarea>
-          </div>
-        </form>
+        {/* text editor */}
+        <div className='editor-div'>
+          <h2>Section Editor</h2>
+          <textarea id='section-editor' rows="2" cols="25" defaultValue={'Select or create section to get started.'}></textarea>
+        </div>
+      </div>
 
         {/* new section form */}
         <form id='new-section-form' onSubmit={addSection}>
