@@ -30,17 +30,6 @@ body {
     align-items: center;
   }
   
-  #markdown-preview {
-    background-color: #3b3b3b;
-    margin-left: 20px;
-    width: 400px;
-    height: 300px;
-  }
-  
-  .markdown-preview-h2 {
-    margin-left: 80px;
-  }
-  
   textarea {
     background-color: #3b3b3b;
     color: #abffc7;
@@ -127,11 +116,24 @@ body {
     justify-content: center;
   }
   
+.markdown-div {
+  width: 300px;
+  margin-left: 20px;
+  height: 300px;
+  background-color: #3b3b3b;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.markdown-h2{
+  margin-left: 40px;
+}
+
   button {
     margin-top: 20px;
     background-color: #4dfa87;
     width: 100px;
-    height: 55px;
+    height: 40px;
     font-size: 20px;
     border-radius: 10px;
     border: 0;

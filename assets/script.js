@@ -3,6 +3,34 @@ let sectionStorage = [`# Title`,`## Description`,`## Link`,`## Usage`,`## Licens
 let selectedSection // used as a global variable for the functions to know which section is selected and in the editor
 
 
+function updateMarkdownPreview(){
+  document.getElementById('markdown-div').remove()
+
+  let newDiv = document.createElement('div')
+  newDiv.classList.add('markdown-div')
+  newDiv.id = 'markdown-div'
+
+  document.getElementById('markdown-preview').appendChild(newDiv)
+
+  sectionStorage.forEach((section) => {
+    let hashtagCount = 0
+    let newHeader
+    if(section[0]===`#`){hashtagCount++}
+    if(section[1]===`#`){hashtagCount++}
+
+    if(hashtagCount===1){
+      newHeader = document.createElement('h4')
+      newHeader.textContent = section
+    }else{
+      newHeader = document.createElement('h6')
+      newHeader.textContent = section
+    }
+
+    document.getElementById('markdown-div').appendChild(newHeader)
+  })
+
+}
+
 // grabs all the data from the page to be put into the readme.md file for the user
 function fetchUserInputData() {
   // creates markdown file based on what user inputed on page
@@ -27,8 +55,6 @@ function downloadMarkdownFile(markdownContent) {
   link.click()
   document.body.removeChild(link)
   URL.revokeObjectURL(url)
-  // code for when the project title input is empty and you submit the form
-  document.getElementById('tip-span').innerHTML = 'You at least gotta have a title to generate a markdown file.'
 }
 
 function displayInEditor(sectionId){
@@ -38,39 +64,43 @@ function displayInEditor(sectionId){
 }
 
 function updateStorage(){
+  console.log('update')
   //updates specific item in section storage based on whats in the editor
   if(sectionStorage[selectedSection]){
     sectionStorage[selectedSection] = document.getElementById('section-editor').value
+    updateMarkdownPreview()
   }
 }
 
 function addSection(event){
   event.preventDefault() // prevents page from refreshing on form submission
 
-  // create div and add proper attributes
-  let newDiv = document.createElement('div')
-  newDiv.id = sectionStorage.length
-  newDiv.classList.add('single-section-div')
-
-  // create span and add proper attributes
-  let newSpan = document.createElement('span')
-  newSpan.classList.add('section-span')
-  newSpan.addEventListener('click', ()=>displayInEditor(newDiv.id))
-  newSpan.innerText = document.getElementById('new-section-input').value
-
-  // create button and add proper attributes
-  let newButton = document.createElement('button')
-  newButton.classList.add('section-button')
-  newButton.addEventListener('click', ()=>removeSection(newDiv.id))
-  newButton.innerText = 'delete'
-
-  // add new elements into the div, then add div to dom
-  newDiv.appendChild(newSpan)
-  newDiv.appendChild(newButton)
-  document.getElementById('sections-div').appendChild(newDiv)
-
-  //add to the section storage
-  sectionStorage.push(`## ${document.getElementById('new-section-input').value}`)
+  if(document.getElementById('new-section-input') !== ''){
+    // create div and add proper attributes
+    let newDiv = document.createElement('div')
+    newDiv.id = sectionStorage.length
+    newDiv.classList.add('single-section-div')
+  
+    // create span and add proper attributes
+    let newSpan = document.createElement('span')
+    newSpan.classList.add('section-span')
+    newSpan.addEventListener('click', ()=>displayInEditor(newDiv.id))
+    newSpan.innerText = document.getElementById('new-section-input').value
+  
+    // create button and add proper attributes
+    let newButton = document.createElement('button')
+    newButton.classList.add('section-button')
+    newButton.addEventListener('click', ()=>removeSection(newDiv.id))
+    newButton.innerText = 'delete'
+  
+    // add new elements into the div, then add div to dom
+    newDiv.appendChild(newSpan)
+    newDiv.appendChild(newButton)
+    document.getElementById('sections-div').appendChild(newDiv)
+  
+    //add to the section storage
+    sectionStorage.push(`## ${document.getElementById('new-section-input').value}`)
+  }
 }
 
 function removeSection(elmToRemoveId){
@@ -114,5 +144,7 @@ document.getElementById(4).children[1].addEventListener('click', ()=> removeSect
 document.getElementById(5).children[1].addEventListener('click', ()=> removeSection(5), true)
 
 document.getElementById('new-section-form').addEventListener('submit', addSection)
-document.getElementById('section-editor').addEventListener('change', updateStorage)
+document.getElementById('section-editor').addEventListener('input', updateStorage)
 document.getElementById('download-button').addEventListener('click', downloadMarkdownFile)
+
+updateMarkdownPreview()
