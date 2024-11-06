@@ -41,15 +41,13 @@ function addSection(event){
   event.preventDefault() // prevents page from refreshing
 
   if(document.getElementById('new-section-input').value !== ''){
-    console.log(`sections before addition ${sections}`)
     // add new item to section storage array
     sectionStorage.push([sections, `## ${document.getElementById('new-section-input').value}`])
-    console.log([sections, `## ${document.getElementById('new-section-input').value}`])
     
     // creates containing div of the span and button elements for the new section
     let newSectionDiv = document.createElement('div')
     newSectionDiv.classList.add('single-section-div')
-    newSectionDiv.id = sections.toString // id for deleting section
+    newSectionDiv.id = sections.toString() // id for deleting section
     
     // creates span with the new section title
     let newSectionSpan = document.createElement('span')
@@ -61,14 +59,16 @@ function addSection(event){
     let newSectionButton = document.createElement('button')
     newSectionButton.innerHTML = 'delete'
     newSectionButton.classList.add('section-button')
-    newSectionButton.addEventListener('click', ()=> { removeSection(sections.toString)})
-  
-    console.log(`section storage here ${sectionStorage}`)
+    newSectionButton.addEventListener('click', ()=> { removeSection(sections.toString())})
+    console.log(`SECTIONS: ${sections}`)
+    sections += 1 // increases so each new section has a unique id
+    console.log(`SECTIONS plus one! wow!: ${sections}`)
+    
     // adds elements to div, then adds the div to the page
     newSectionDiv.appendChild(newSectionSpan)
     newSectionDiv.appendChild(newSectionButton)
     document.getElementById('sections-div').appendChild(newSectionDiv)
-    sections++ // increases so each new section has a unique id
+    document.getElementById('new-section-input').value = ''
   }else {
     document.getElementById('new-section-input').value = 'cannot be empty'
     document.getElementById('new-section-input').select()
@@ -77,33 +77,29 @@ function addSection(event){
 
 // function that simply removes sections
 function removeSection(sectionId){
+    console.log(`section id before addition by one ${sectionId}`)
+    if(sectionId >= 6){sectionId -= 1}
     for(let i=0; i<sectionStorage.length; i++){
       if(sectionStorage[i][0] === sectionId){
         sectionStorage.splice(i,1)
       }
     }
     console.log(sectionStorage)
-    document.getElementById(sectionId).remove()
+    document.getElementById(sectionId.toString()).remove()
     document.getElementById('section-editor').value = ''
 }
 
 function displayInEditor(sectionId){
-  console.log('displaying')
   if(sectionId >= 6){sectionId -= 1}
   selectedSection = sectionId
-  console.log(`selected section ${selectedSection}`)
-  console.log(`sectionID ${sectionId}`)
   for(let i=0; i<sectionStorage.length; i++){
-    console.log(`Section storage ${sectionStorage[i][0]} checking with section id: ${sectionId}`)
     if(sectionStorage[i][0] === sectionId){
-      console.log('yay')
       document.getElementById('section-editor').value = sectionStorage[i][1]
     }
   }
 }
 
 // function updatePreview(selectedId){
-//   console.log('updating preview')
 //   let sectionHeader = document.getElementById(selectedId).querySelector('span').textContent
 //   let sectionHeaderPreview = document.createElement('h3')
 //   sectionHeaderPreview.textContent = sectionHeader
@@ -114,13 +110,11 @@ function displayInEditor(sectionId){
 // }
 
 function updateStorage(){
-  console.log('updating')
   for(let i=0; i<sectionStorage.length; i++){
     if(sectionStorage[i][0] === selectedSection){
       sectionStorage[i][1] = document.getElementById('section-editor').value
     }
   }
-  console.log(sectionStorage[0][1])
 }
 
 // main function
