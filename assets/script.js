@@ -1,0 +1,98 @@
+import './App.css'
+let markdownContent     // defines markdown content to be used later by multiple functions
+let sectionStorage = [`## Title`,`## Description`,`## Link`,`## Usage`,`## License`,`## Contribution`]
+let selectedSection // used as a global variable for the functions to know which section is selected and in the editor
+
+// grabs all the data from the page to be put into the readme.md file for the user
+function fetchUserInputData() {
+  // creates markdown file based on what user inputed on page
+  let markdown = `# ${document.getElementById('title-input').value}`
+  return markdown
+}
+
+// function that collects the markdown content and delivers it in a README.md file for the user to download
+function downloadMarkdownFile(markdownContent) {
+  markdownContent = fetchUserInputData()
+
+  // checks for project title which is the bare minimum to create markdown file
+  if(document.getElementById('title-input').value !== ''){
+    document.getElementById('tip-span').innerHTML = 'Happy Coding!'
+
+    // code creates markdown link, autoselects it then removes it so the download can start right as the download button is pressed
+    const blob = new Blob([markdownContent], { type: "text/markdown" })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    link.download = "README.md"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+  }else{
+    // code for when the project title input is empty and you submit the form
+    document.getElementById('tip-span').innerHTML = 'You at least gotta have a title to generate a markdown file.'
+  }
+}
+
+function displayInEditor(id){
+  //gets specific section using unique id and displays it to the editor
+  document.getElementById('section-editor').value = sectionStorage[id]
+  selectedSection = id // this tells the editor which section is selected so it can edit the storage properly
+}
+
+function updateStorage(){
+  //updates specific item in section storage based on whats in the editor
+  sectionStorage[selectedSection] = document.getElementById('section-editor').value
+}
+
+function addSection(event){
+  event.preventDefault() // prevents page from refreshing on form submission
+
+  // create div and add proper attributes
+  let newDiv = document.createElement('div')
+  newDiv.id = sectionStorage.length
+  newDiv.classList.add('single-section-div')
+
+  // create span and add proper attributes
+  let newSpan = document.createElement('span')
+  newSpan.classList.add('section-span')
+  newSpan.addEventListener('click', ()=>displayInEditor(newDiv.id))
+  newSpan.innerText = document.getElementById('new-section-input').value
+
+  // create button and add proper attributes
+  let newButton = document.createElement('button')
+  newButton.classList.add('section-button')
+  newButton.addEventListener('click', ()=>removeSection(newDiv.id))
+  newButton.innerText = 'delete'
+
+  // add new elements into the div, then add div to dom
+  newDiv.appendChild(newSpan)
+  newDiv.appendChild(newButton)
+  document.getElementById('sections-div').appendChild(newDiv)
+
+  //add to the section storage
+  sectionStorage.push(`## ${document.getElementById('new-section-input').value}`)
+}
+
+function removeSection(elmToRemoveId){
+  console.log(`id to remove ${elmToRemoveId}`)
+  document.getElementById(elmToRemoveId).remove()
+  sectionStorage.splice(elmToRemoveId,1)
+  for(let i=0; i<document.getElementById('sections-div').childElementCount; i++){
+    document.getElementById('sections-div').children[i].id = i
+    document.getElementById('sections-div').children[i].querySelector('span').removeAttribute('onClick')
+    document.getElementById('sections-div').children[i].querySelector('button').removeAttribute('onClick')
+    document.getElementById('sections-div').children[i].addEventListener('click',()=>removeSection(i))
+    document.getElementById('sections-div').children[i].addEventListener('click',()=>displayInEditor(i))
+  }
+
+  console.log(sectionStorage)
+  console.log(document.getElementById('sections-div').children)
+}
+
+// main function
+function App() {
+  
+}
+
+export default App
