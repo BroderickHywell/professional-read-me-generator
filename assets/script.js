@@ -1,7 +1,7 @@
-import './App.css'
 let markdownContent     // defines markdown content to be used later by multiple functions
 let sectionStorage = [`## Title`,`## Description`,`## Link`,`## Usage`,`## License`,`## Contribution`]
 let selectedSection // used as a global variable for the functions to know which section is selected and in the editor
+
 
 // grabs all the data from the page to be put into the readme.md file for the user
 function fetchUserInputData() {
@@ -79,20 +79,38 @@ function removeSection(elmToRemoveId){
   document.getElementById(elmToRemoveId).remove()
   sectionStorage.splice(elmToRemoveId,1)
   for(let i=0; i<document.getElementById('sections-div').childElementCount; i++){
+    let oldSpanTitle = document.getElementById('sections-div').children[i].querySelector('span').innerText
+    document.getElementById('sections-div').children[i].querySelector('span').remove()
+    document.getElementById('sections-div').children[i].querySelector('button').remove()
+
+    let newSpan = document.createElement('span')
+    newSpan.classList.add('section-span')
+    newSpan.addEventListener('click', ()=>displayInEditor(i))
+    newSpan.innerText = oldSpanTitle
+
+    let newButton = document.createElement('button')
+    newButton.classList.add('section-button')
+    newButton.addEventListener('click', ()=>removeSection(i))
+    newButton.innerText = 'delete'
+
+    document.getElementById('sections-div').children[i].appendChild(newSpan)
+    document.getElementById('sections-div').children[i].appendChild(newButton)
     document.getElementById('sections-div').children[i].id = i
-    document.getElementById('sections-div').children[i].querySelector('span').removeAttribute('onClick')
-    document.getElementById('sections-div').children[i].querySelector('button').removeAttribute('onClick')
-    document.getElementById('sections-div').children[i].addEventListener('click',()=>removeSection(i))
-    document.getElementById('sections-div').children[i].addEventListener('click',()=>displayInEditor(i))
   }
 
-  console.log(sectionStorage)
-  console.log(document.getElementById('sections-div').children)
+  console.log(`section storage is now${sectionStorage}`)
 }
 
-// main function
-function App() {
-  
-}
+document.getElementById(0).children[0].addEventListener('click', ()=> displayInEditor(0), true)
+document.getElementById(1).children[0].addEventListener('click', ()=> displayInEditor(1), true)
+document.getElementById(2).children[0].addEventListener('click', ()=> displayInEditor(2), true)
+document.getElementById(3).children[0].addEventListener('click', ()=> displayInEditor(3), true)
+document.getElementById(4).children[0].addEventListener('click', ()=> displayInEditor(4), true)
+document.getElementById(5).children[0].addEventListener('click', ()=> displayInEditor(5), true)
 
-export default App
+document.getElementById(0).children[1].addEventListener('click', ()=> removeSection(0), true)
+document.getElementById(1).children[1].addEventListener('click', ()=> removeSection(1), true)
+document.getElementById(2).children[1].addEventListener('click', ()=> removeSection(2), true)
+document.getElementById(3).children[1].addEventListener('click', ()=> removeSection(3), true)
+document.getElementById(4).children[1].addEventListener('click', ()=> removeSection(4), true)
+document.getElementById(5).children[1].addEventListener('click', ()=> removeSection(5), true)
