@@ -1,9 +1,7 @@
 import './App.css'
-function handleForm(event){ event.preventDefault() } // prevents the page from loading when you submit the form
 let markdownContent     // defines markdown content to be used later by multiple functions
-let sections = 6        // variable for creating unique id's for each section
-let sectionStorage = [[0, `# Title`], [1,`## Description`], [2,`## Link`], [3,`## Usage`], [4,`## License`], [5,`## Contribution`]] // array for holding the markdown content for each section
-let selectedSection = 0 // variable for keeping track of the section that is selected
+let sectionStorage = [`## Title`,`## Description`,`## Link`,`## Usage`,`## License`,`## Contribution`]
+let selectedSection // used as a global variable for the functions to know which section is selected and in the editor
 
 // grabs all the data from the page to be put into the readme.md file for the user
 function fetchUserInputData() {
@@ -36,85 +34,50 @@ function downloadMarkdownFile(markdownContent) {
   }
 }
 
-// adds new section to the page based on user input
-function addSection(event){
-  event.preventDefault() // prevents page from refreshing
-
-  if(document.getElementById('new-section-input').value !== ''){
-    // add new item to section storage array
-    sectionStorage.push([sections, `## ${document.getElementById('new-section-input').value}`])
-    
-    // creates containing div of the span and button elements for the new section
-    let newSectionDiv = document.createElement('div')
-    newSectionDiv.classList.add('single-section-div')
-    newSectionDiv.id = sections.toString() // id for deleting section
-    
-    // creates span with the new section title
-    let newSectionSpan = document.createElement('span')
-    newSectionSpan.innerHTML = document.getElementById('new-section-input').value
-    newSectionSpan.classList.add('section-span')
-    newSectionSpan.addEventListener('click', ()=>{displayInEditor(sections)})
-  
-    // creates delete button for new section
-    let newSectionButton = document.createElement('button')
-    newSectionButton.innerHTML = 'delete'
-    newSectionButton.classList.add('section-button')
-    newSectionButton.addEventListener('click', ()=> { removeSection(sections.toString())})
-    console.log(`SECTIONS: ${sections}`)
-    sections += 1 // increases so each new section has a unique id
-    console.log(`SECTIONS plus one! wow!: ${sections}`)
-    
-    // adds elements to div, then adds the div to the page
-    newSectionDiv.appendChild(newSectionSpan)
-    newSectionDiv.appendChild(newSectionButton)
-    document.getElementById('sections-div').appendChild(newSectionDiv)
-    document.getElementById('new-section-input').value = ''
-  }else {
-    document.getElementById('new-section-input').value = 'cannot be empty'
-    document.getElementById('new-section-input').select()
-  }
+function displayInEditor(id){
+  //gets specific section using unique id and displays it to the editor
+  document.getElementById('section-editor').value = sectionStorage[id]
+  selectedSection = id
 }
-
-// function that simply removes sections
-function removeSection(sectionId){
-    console.log(`section id before addition by one ${sectionId}`)
-    if(sectionId >= 6){sectionId -= 1}
-    for(let i=0; i<sectionStorage.length; i++){
-      if(sectionStorage[i][0] === sectionId){
-        sectionStorage.splice(i,1)
-      }
-    }
-    console.log(sectionStorage)
-    document.getElementById(sectionId.toString()).remove()
-    document.getElementById('section-editor').value = ''
-}
-
-function displayInEditor(sectionId){
-  if(sectionId >= 6){sectionId -= 1}
-  selectedSection = sectionId
-  for(let i=0; i<sectionStorage.length; i++){
-    if(sectionStorage[i][0] === sectionId){
-      document.getElementById('section-editor').value = sectionStorage[i][1]
-    }
-  }
-}
-
-// function updatePreview(selectedId){
-//   let sectionHeader = document.getElementById(selectedId).querySelector('span').textContent
-//   let sectionHeaderPreview = document.createElement('h3')
-//   sectionHeaderPreview.textContent = sectionHeader
-
-//   let sectionContent = document.getElementById('')
-//   let markdownPreview = document.getElementById('markdown-preview')
-//   markdownPreview.appendChild(sectionHeaderPreview)
-// }
 
 function updateStorage(){
-  for(let i=0; i<sectionStorage.length; i++){
-    if(sectionStorage[i][0] === selectedSection){
-      sectionStorage[i][1] = document.getElementById('section-editor').value
-    }
-  }
+  //updates specific item in section storage based on whats in the editor
+  sectionStorage[selectedSection] = document.getElementById('section-editor').value
+}
+
+function addSection(event){
+  event.preventDefault() // prevents page from refreshing on form submission
+
+  // create div and add proper attributes
+  let newDiv = document.createElement('div')
+  newDiv.id = sectionStorage.length
+  newDiv.classList.add('single-section-div')
+
+  // create span and add proper attributes
+  let newSpan = document.createElement('span')
+  newSpan.classList.add('section-span')
+  newSpan.addEventListener('click', ()=>displayInEditor(newDiv.id))
+  newSpan.innerText = document.getElementById('new-section-input').value
+
+  // create button and add proper attributes
+  let newButton = document.createElement('button')
+  newButton.classList.add('section-button')
+  newButton.addEventListener('click', ()=>removeSection(newDiv.id))
+  newButton.innerText = 'delete'
+
+  // add new elements into the div, then add div to dom
+  newDiv.appendChild(newSpan)
+  newDiv.appendChild(newButton)
+  document.getElementById('sections-div').appendChild(newDiv)
+
+  //add to the section storage
+  sectionStorage.push(`## ${document.getElementById('new-section-input').value}`)
+}
+
+function removeSection(){
+  //get unique id of selected section and remove it from dom and section storage
+  //reassign ids of section elements
+  //also reset the editor to avoid any errors
 }
 
 // main function
