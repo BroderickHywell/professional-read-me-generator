@@ -34,20 +34,21 @@ function downloadMarkdownFile(markdownContent) {
   }
 }
 
-function displayInEditor(id){
+function displayInEditor(sectionId){
   //gets specific section using unique id and displays it to the editor
-  document.getElementById('section-editor').value = sectionStorage[id]
-  selectedSection = id // this tells the editor which section is selected so it can edit the storage properly
+  document.getElementById('section-editor').value = sectionStorage[sectionId]
+  selectedSection = sectionId // this tells the editor which section is selected so it can edit the storage properly
 }
 
 function updateStorage(){
   //updates specific item in section storage based on whats in the editor
-  sectionStorage[selectedSection] = document.getElementById('section-editor').value
+  if(sectionStorage[selectedSection]){
+    sectionStorage[selectedSection] = document.getElementById('section-editor').value
+  }
 }
 
 function addSection(event){
   event.preventDefault() // prevents page from refreshing on form submission
-  console.log('loser')
 
   // create div and add proper attributes
   let newDiv = document.createElement('div')
@@ -76,7 +77,7 @@ function addSection(event){
 }
 
 function removeSection(elmToRemoveId){
-  console.log(`id to remove ${elmToRemoveId}`)
+  if(elmToRemoveId === selectedSection){document.getElementById('section-editor').value = ''}
   document.getElementById(elmToRemoveId).remove()
   sectionStorage.splice(elmToRemoveId,1)
   for(let i=0; i<document.getElementById('sections-div').childElementCount; i++){
@@ -99,7 +100,6 @@ function removeSection(elmToRemoveId){
     document.getElementById('sections-div').children[i].id = i
   }
 
-  console.log(`section storage is now${sectionStorage}`)
 }
 
 document.getElementById(0).children[0].addEventListener('click', ()=> displayInEditor(0), true)
@@ -117,3 +117,4 @@ document.getElementById(4).children[1].addEventListener('click', ()=> removeSect
 document.getElementById(5).children[1].addEventListener('click', ()=> removeSection(5), true)
 
 document.getElementById('new-section-form').addEventListener('submit', addSection)
+document.getElementById('section-editor').addEventListener('change', updateStorage)
