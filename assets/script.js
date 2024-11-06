@@ -47,6 +47,7 @@ function updateStorage(){
 
 function addSection(event){
   event.preventDefault() // prevents page from refreshing on form submission
+  console.log('loser')
 
   // create div and add proper attributes
   let newDiv = document.createElement('div')
@@ -114,3 +115,5 @@ document.getElementById(2).children[1].addEventListener('click', ()=> removeSect
 document.getElementById(3).children[1].addEventListener('click', ()=> removeSection(3), true)
 document.getElementById(4).children[1].addEventListener('click', ()=> removeSection(4), true)
 document.getElementById(5).children[1].addEventListener('click', ()=> removeSection(5), true)
+
+document.getElementById('new-section-form').addEventListener('submit', addSection)
