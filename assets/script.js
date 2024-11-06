@@ -1,12 +1,13 @@
 let markdownContent     // defines markdown content to be used later by multiple functions
-let sectionStorage = [`## Title`,`## Description`,`## Link`,`## Usage`,`## License`,`## Contribution`]
+let sectionStorage = [`# Title`,`## Description`,`## Link`,`## Usage`,`## License`,`## Contribution`]
 let selectedSection // used as a global variable for the functions to know which section is selected and in the editor
 
 
 // grabs all the data from the page to be put into the readme.md file for the user
 function fetchUserInputData() {
   // creates markdown file based on what user inputed on page
-  let markdown = `# ${document.getElementById('title-input').value}`
+  let markdown = ``
+  sectionStorage.forEach((section) => markdown += `${section} \n`)
   return markdown
 }
 
@@ -15,23 +16,19 @@ function downloadMarkdownFile(markdownContent) {
   markdownContent = fetchUserInputData()
 
   // checks for project title which is the bare minimum to create markdown file
-  if(document.getElementById('title-input').value !== ''){
-    document.getElementById('tip-span').innerHTML = 'Happy Coding!'
 
-    // code creates markdown link, autoselects it then removes it so the download can start right as the download button is pressed
-    const blob = new Blob([markdownContent], { type: "text/markdown" })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement("a")
-    link.href = url
-    link.download = "README.md"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    URL.revokeObjectURL(url)
-  }else{
-    // code for when the project title input is empty and you submit the form
-    document.getElementById('tip-span').innerHTML = 'You at least gotta have a title to generate a markdown file.'
-  }
+  // code creates markdown link, autoselects it then removes it so the download can start right as the download button is pressed
+  const blob = new Blob([markdownContent], { type: "text/markdown" })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement("a")
+  link.href = url
+  link.download = "README.md"
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  URL.revokeObjectURL(url)
+  // code for when the project title input is empty and you submit the form
+  document.getElementById('tip-span').innerHTML = 'You at least gotta have a title to generate a markdown file.'
 }
 
 function displayInEditor(sectionId){
@@ -118,3 +115,4 @@ document.getElementById(5).children[1].addEventListener('click', ()=> removeSect
 
 document.getElementById('new-section-form').addEventListener('submit', addSection)
 document.getElementById('section-editor').addEventListener('change', updateStorage)
+document.getElementById('download-button').addEventListener('click', downloadMarkdownFile)
