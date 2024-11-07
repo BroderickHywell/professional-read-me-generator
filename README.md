@@ -1,6 +1,5 @@
 # Professional README Generator
 ![badmath](https://img.shields.io/badge/Javascript-39.6_percent-yellow)
-![badmath](https://img.shields.io/badge/Library-React-yellow)
 ![badmath](https://img.shields.io/badge/CSS-31.3_percent-blue)
 ![badmath](https://img.shields.io/badge/HTML-29.1_percent-orange)
 ![badmath](https://img.shields.io/badge/Drank_Coffee_During_Production-Yes-brown)
@@ -13,11 +12,11 @@ by just entering your data for your application into the fields, and my applicat
 [professional readme.md generator](https://brodericks-pro-readme-generator.netlify.app/)
 
 ## Screenshot
-![app-screenshot](https://github.com/user-attachments/assets/e0cc6ee0-bfc8-4e5d-9535-a4145c819007)
+![site-screenshot](https://github.com/user-attachments/assets/e397c090-687a-4f1f-b5b9-32e735d9ffc2)
 
 ## Usage
-Simply enter your project details into the corresponding fields and submit the form by clicking the button or hitting enter. It will create a README.md file for you to download to whatever destination you choose. You can also add as many new inputs as you like for your readme.md file
-with the input at the bottom of the page.
+Select or create a new section and click on the text to open it into the editor, then you can change the value of each section. You can also remove sections you don't want by clicking the delete button next to the text. When you have all the sections you want and each one
+customized the way you want, simply hit the download button on the page and it will generate a markdown file for you with all your created sections.
 
 ## Credits
 [netlify](https://www.netlify.com/) - hosting live application
