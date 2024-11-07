@@ -1,0 +1,65 @@
+body {
+  background-color: #007f7f;
+  color: white;
+}
+
+.App{
+  background-color: #c0c2bf;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+header{
+  margin: 2px;
+  background-color: #04017e;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 99%;
+}
+header img{
+  width: 20px;
+}
+.img-title{
+  display: flex;
+  align-items: center;
+}
+
+.window-top-icons{
+  display: flex;
+  flex-direction: row;
+}
+
+.window-top-icon{
+  color: black;
+  border-left: 3px solid rgb(228, 228, 228);
+  border-top: 3px solid rgb(228, 228, 228);
+  border-bottom: 3px solid grey;
+  border-right: 3px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(175, 175, 175);
+  margin-right: 5px;
+  margin-top: 2px;
+  width: 17px;
+  height: 17px;
+}
+.window-top-icon:hover{
+  cursor: pointer;
+}
+
+.sections-editor{
+  display: flex;
+  flex-direction: row;
+}
+
+.sections-container{
+  width: 250px;
+  color: black;
+  background-color: white;
+}
