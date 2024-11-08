@@ -1,16 +1,29 @@
 body {
+  top: 0;
   background-color: #007f7f;
   color: white;
 }
 
-.App{
+.sidebar{
+  float: left;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100px;
+  height: 100%;
   background-color: #c0c2bf;
-  padding: 1px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border-left: 3px solid rgb(228, 228, 228);
+  border-top: 3px solid rgb(228, 228, 228);
+  border-bottom: 3px solid grey;
+  border-right: 3px solid grey;
 }
 
+.content{
+  display: flex;
+  flex-direction: column;
+  background-color: #c0c2bf;
+  margin-left: 50px;
+}
 
 header{
   margin: 2px;
@@ -62,4 +75,10 @@ header img{
   width: 250px;
   color: black;
   background-color: white;
+}
+
+.editor-div{
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
 }
