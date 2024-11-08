@@ -17,78 +17,91 @@
     gtag('config', 'G-FKP3N161S6');
   </script>
 <body>
-    <div class="App">
-      <header>
-        <span class="app-name-span">readme.md generator</span>
-        <div class="window-top-icons">
-          <div class="window-top-icon">?</div>
-          <div class="window-top-icon">X</div>
-        </div>
-      </header>
-        <div class='main-content-div'>
-        <div class='sections-and-editor'>
-          <!-- {/* sections */} -->
-          <div class="sections-container">
-            <span class="readme-sections-span">readme sections</span>
-            <div id='sections-div'>
-              <div class='single-section-div' id='0'>
-                <span class='section-span' >Title</span>
-                <button class='section-button' >delete</button>
-              </div>
-  
-              <div class='single-section-div' id='1'>
-                <span class='section-span' >Description</span>
-                <button class='section-button' >delete</button>
-              </div>
-  
-              <div class='single-section-div' id='2'>
-                <span class='section-span' >Link</span>
-                <button class='section-button' >delete</button>
-              </div>
-  
-              <div class='single-section-div' id='3'>
-                <span class='section-span' >Usage</span>
-                <button class='section-button' >delete</button>
-              </div>
-  
-              <div class='single-section-div' id='4'>
-                <span class='section-span'>License</span>
-                <button class='section-button'>delete</button>
-              </div>
-  
-              <div class='single-section-div' id='5'>
-                <span class='section-span'>Contribute</span>
-                <button class='section-button'>delete</button>
-              </div>
-            </div>
-          </div>
-  
-          <!-- {/* text editor */} -->
-          <div class='editor-div'>
-            <h2>Section Editor</h2>
-            <textarea id='section-editor' rows="2" cols="25" placeholder='Select or create section.'></textarea>
-          </div>
-
-          <!-- <div id="markdown-preview">
-            <h2 class="markdown-h2">Markdown Preview</h2>
-            <div id="markdown-div" class="markdown-div">
-
-            </div>
-          </div> -->
-  
-        </div>
-        <!-- {/* new section form and download button*/} -->
-         <div class="download-and-new-button-div">
-           <form id='new-section-form' >
-             <div class='new-section-div'>
-               <input placeholder='create new section' id='new-section-input' maxLength='14'/>
-               <button id='new-section-button'>+</button>
-             </div>
-           </form>
-           <button id="download-button">download</button>
-         </div>
+  <div class="app">
+    <div class="main-content">
+      <div class="sidebar">
+        <span>item</span>
       </div>
+      <div class="sidebar-block"></div>
+    
+      <div class="content">
+        <header>
+          <div class="img-title">
+            <img src="assets/icons/notepad_file_gear-2.png"/>
+            <span class="app-name-span">readme.md generator</span>
+          </div>
+          <div class="window-top-icons">
+            <div class="window-top-icon">?</div>
+            <div class="window-top-icon">X</div>
+          </div>
+        </header>
+    
+          <div class='main-content-div'>
+          <div class='sections-editor'>
+            <!-- {/* sections */} -->
+            <div class="sections-container">
+              <span class="sections-span">readme sections</span>
+              <div id='sections-div'>
+                <div class='single-section-div' id='0'>
+                  <span class='section-span' >Title</span>
+                  <button class='section-button' >delete</button>
+                </div>
+    
+                <div class='single-section-div' id='1'>
+                  <span class='section-span' >Description</span>
+                  <button class='section-button' >delete</button>
+                </div>
+    
+                <div class='single-section-div' id='2'>
+                  <span class='section-span' >Link</span>
+                  <button class='section-button' >delete</button>
+                </div>
+    
+                <div class='single-section-div' id='3'>
+                  <span class='section-span' >Usage</span>
+                  <button class='section-button' >delete</button>
+                </div>
+    
+                <div class='single-section-div' id='4'>
+                  <span class='section-span'>License</span>
+                  <button class='section-button'>delete</button>
+                </div>
+    
+                <div class='single-section-div' id='5'>
+                  <span class='section-span'>Contribute</span>
+                  <button class='section-button'>delete</button>
+                </div>
+              </div>
+            </div>
+    
+            <!-- {/* text editor */} -->
+            <div class='editor-div'>
+              <span>Section Editor</span>
+              <textarea id='section-editor' rows="2" cols="25" placeholder='Select or create section.'></textarea>
+            </div>
+    
+            <!-- <div id="markdown-preview">
+              <h2 class="markdown-h2">Markdown Preview</h2>
+              <div id="markdown-div" class="markdown-div">
+    
+              </div>
+            </div> -->
+    
+          </div>
+          <!-- {/* new section form and download button*/} -->
+            <div class="download-and-new-button-div">
+              <form id='new-section-form' >
+                <div class='new-section-div'>
+                  <input placeholder='create new section' id='new-section-input' maxLength='14'/>
+                  <button id='new-section-button'>+</button>
+                </div>
+              </form>
+              <button id="download-button">download</button>
+            </div>
+        </div>
+    </div>
+  </div>
 
-      <script src="assets/script.js"></script>
+  <script src="assets/script.js"></script>
 </body>
 </html>
