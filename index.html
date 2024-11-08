@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>readme</title>
+    <link rel="icon" href="assets/favicon.ico"/>
+    <link rel="stylesheet" href="assets/style.css"/>
+</head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKP3N161S6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FKP3N161S6');
+  </script>
+<body>
+    <div class="App">
+        <h1>readme.md generator</h1>
+        <span class='start-span'>To edit a section, click on the text to the left of the delete button and it will show up in the editor on the right. Don't forget to bookmark this site to use for your other projects!</span>
+        <div class='main-content-div'>
+        <div class='sections-and-editor'>
+          <!-- {/* sections */} -->
+          <div>
+            <h2 class='readme-sections-h2'>readme.md sections</h2>
+            <div id='sections-div'>
+              <div class='single-section-div' id='0'>
+                <span class='section-span' >Title</span>
+                <button class='section-button' >delete</button>
+              </div>
+  
+              <div class='single-section-div' id='1'>
+                <span class='section-span' >Description</span>
+                <button class='section-button' >delete</button>
+              </div>
+  
+              <div class='single-section-div' id='2'>
+                <span class='section-span' >Link</span>
+                <button class='section-button' >delete</button>
+              </div>
+  
+              <div class='single-section-div' id='3'>
+                <span class='section-span' >Usage</span>
+                <button class='section-button' >delete</button>
+              </div>
+  
+              <div class='single-section-div' id='4'>
+                <span class='section-span'>License</span>
+                <button class='section-button'>delete</button>
+              </div>
+  
+              <div class='single-section-div' id='5'>
+                <span class='section-span'>Contribute</span>
+                <button class='section-button'>delete</button>
+              </div>
+            </div>
+          </div>
+  
+          <!-- {/* text editor */} -->
+          <div class='editor-div'>
+            <h2>Section Editor</h2>
+            <textarea id='section-editor' rows="2" cols="25" placeholder='Select or create section.'></textarea>
+          </div>
+
+          <!-- <div id="markdown-preview">
+            <h2 class="markdown-h2">Markdown Preview</h2>
+            <div id="markdown-div" class="markdown-div">
+
+            </div>
+          </div> -->
+  
+        </div>
+        <!-- {/* new section form and download button*/} -->
+         <div class="download-and-new-button-div">
+           <form id='new-section-form' >
+             <div class='new-section-div'>
+               <input placeholder='create new section' id='new-section-input' maxLength='14'/>
+               <button id='new-section-button'>+</button>
+             </div>
+           </form>
+           <button id="download-button">download</button>
+         </div>
+      </div>
+
+      <script src="assets/script.js"></script>
+</body>
+</html>
