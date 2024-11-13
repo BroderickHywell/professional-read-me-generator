@@ -5,6 +5,9 @@
 ![badmath](https://img.shields.io/badge/HTML-29.1_percent-orange)
 ![badmath](https://img.shields.io/badge/Drank_Coffee_During_Production-Yes-brown)
 
+## STATE
+Under construction, took some steps back, so the site isn't fully functional right now.
+
 ## Description
 Everyones time is valuable, and one occupation that exaggerates that more than a developer. One task that almost all projects require is a reame.md file. So while these files are relatively simple, especially in the beginning, I have created this application to save you 15+ minutes
 by just entering your data for your application into the fields, and my application will generate a readme.md file for you that you can download directly into your project. Hope I have helped in your coding journey, and don't forget to bookmark my app for your other projects!
