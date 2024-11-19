@@ -43,6 +43,11 @@ function updateStorage(){
   }
 }
 
+// create markdown preview function
+function markdownPreview(){
+  
+}
+
 function addSection(event){
   event.preventDefault() // prevents page from refreshing on form submission
 
