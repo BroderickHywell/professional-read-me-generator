@@ -2,6 +2,35 @@ let markdownContent     // defines markdown content to be used later by multiple
 let sectionStorage = [`# Title`,`## Description`,`## Link`,`## Usage`,`## License`,`## Contribution`]
 let selectedSection // used as a global variable for the functions to know which section is selected and in the editor
 
+
+// function updateMarkdownPreview(){
+//   document.getElementById('markdown-div').remove()
+
+//   let newDiv = document.createElement('div')
+//   newDiv.classList.add('markdown-div')
+//   newDiv.id = 'markdown-div'
+
+//   document.getElementById('markdown-preview').appendChild(newDiv)
+
+//   sectionStorage.forEach((section) => {
+//     let hashtagCount = 0
+//     let newHeader
+//     if(section[0]===`#`){hashtagCount++}
+//     if(section[1]===`#`){hashtagCount++}
+
+//     if(hashtagCount===1){
+//       newHeader = document.createElement('h4')
+//       newHeader.textContent = section
+//     }else{
+//       newHeader = document.createElement('h6')
+//       newHeader.textContent = section
+//     }
+
+//     document.getElementById('markdown-div').appendChild(newHeader)
+//   })
+
+// }
+
 // grabs all the data from the page to be put into the readme.md file for the user
 function fetchUserInputData() {
   // creates markdown file based on what user inputed on page
@@ -41,11 +70,6 @@ function updateStorage(){
     sectionStorage[selectedSection] = document.getElementById('section-editor').value
     // updateMarkdownPreview()
   }
-}
-
-// create markdown preview function
-function markdownPreview(){
-  
 }
 
 function addSection(event){
@@ -122,3 +146,5 @@ document.getElementById(5).children[1].addEventListener('click', ()=> removeSect
 document.getElementById('new-section-form').addEventListener('submit', addSection)
 document.getElementById('section-editor').addEventListener('input', updateStorage)
 document.getElementById('download-button').addEventListener('click', downloadMarkdownFile)
+
+// updateMarkdownPreview()
